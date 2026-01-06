@@ -378,7 +378,7 @@
         credentials:"include"
       })
       if (!check.ok){
-        window.location.href = "/homepage.html"
+        window.location.href = "/index.html"
         return;
       }else{
         {}
@@ -394,7 +394,7 @@
 
       if (!response.ok || response.status === 400) {
         alert("Oops ! Something went wrong !");
-        window.location.href = "/homepage.html";
+        window.location.href = "/index.html";
         return;
       };
       let data = await response.json();

@@ -182,8 +182,8 @@
                 
 
                 if (response.status === 400 || !response.ok) {
-                    alert("Oops ! Something went wrong !");
-                    window.location.href = "/homepage.html";
+                    alert("Oops ! Looks like you are not logged in !");
+                    window.location.href = "/index.html";
                     return;
                 };
                 let data = await response.json();
