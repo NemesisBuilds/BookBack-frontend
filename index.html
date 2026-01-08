@@ -1,146 +1,292 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookBack | Automated Clinic Management</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-:root {
-    --bg-body: #050811; 
-    --text-main: #f8fafc; 
-    --text-muted: #94a3b8; 
-    --accent: #38bdf8; 
-    --radius: 12px;
-    --nav-height: 80px;
-}
+        :root {
+            --bg-body: #050811;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --radius: 12px;
+            --nav-height: 80px;
+        }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-body);
-    background-image: 
-        radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at 10% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
-    background-attachment: fixed;
-    color: var(--text-main);
-    line-height: 1.6;
-    min-height: 100vh;
-}
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            background-image:
+                radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 10% 80%, rgba(139, 92, 246, 0.1) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
 
-/* --- Navbar --- */
-nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    height: var(--nav-height);
-    background: rgba(5, 8, 17, 0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    display: flex;
-    align-items: center;
-    padding: 0 60px;
-    z-index: 1000;
-}
+        /* --- Navbar --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(5, 8, 17, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 60px;
+            z-index: 1000;
+        }
 
-.nav-left { display: flex; gap: 16px; flex: 1; }
-.nav-center { text-align: center; flex: 1.5; }
-.nav-right { display: flex; justify-content: flex-end; flex: 1; }
+        .nav-left {
+            display: flex;
+            gap: 16px;
+            flex: 1;
+        }
 
-.btn-nav {
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 10px 24px;
-    border-radius: 8px;
-    transition: 0.2s;
-}
+        .nav-center {
+            text-align: center;
+            flex: 1.5;
+        }
 
-.btn-login { color: #fff; border: 1px solid rgba(255,255,255,0.1); }
-.btn-login:hover { background: rgba(255,255,255,0.05); }
+        .nav-right {
+            display: flex;
+            justify-content: flex-end;
+            flex: 1;
+        }
 
-.btn-signup { background: var(--accent); color: #000; border: 1px solid var(--accent); }
-.btn-signup:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-nav {
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 10px 24px;
+            border-radius: 8px;
+            transition: 0.2s;
+        }
 
-/* --- Special Dashboard Button Styling --- */
-.btn-dashboard {
-    color: var(--accent);
-    border: 1px solid var(--accent);
-    background: rgba(56, 189, 248, 0.05);
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
-    animation: soft-pulse 3s infinite;
-}
+        .btn-login {
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
-.btn-dashboard:hover {
-    background: var(--accent);
-    color: #000;
-    box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
-    transform: translateY(-1px);
-}
+        .btn-login:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
 
-@keyframes soft-pulse {
-    0% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.1); }
-    50% { box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
-    100% { box-shadow: 0 0 5px rgba(56, 189, 248, 0.1); }
-}
+        .btn-signup {
+            background: var(--accent);
+            color: #000;
+            border: 1px solid var(--accent);
+        }
 
-/* --- Brand & Hero --- */
-.brand-name { font-size: 1.6rem; font-weight: 800; letter-spacing: -1px; display: block; }
-.brand-tagline { font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+        .btn-signup:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
 
-.hero { height: 80vh; display: flex; align-items: center; padding: 0 10%; }
-.hero-title { max-width: 800px; font-size: 58px; line-height: 1.1; font-weight: 400; letter-spacing: -2px; }
-.hero-title b { font-weight: 800; background: linear-gradient(to right, #fff, var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        /* --- Special Dashboard Button Styling --- */
+        .btn-dashboard {
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            background: rgba(56, 189, 248, 0.05);
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+            animation: soft-pulse 3s infinite;
+        }
 
-/* --- Section Heading --- */
-.section-header { text-align: center; margin-top: -80px; margin-bottom: 60px; padding: 0 10%; }
-.section-header h2 { font-size: 3.2rem; font-weight: 800; letter-spacing: -2px; background: linear-gradient(to bottom, #ffffff 40%, #475569); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .btn-dashboard:hover {
+            background: var(--accent);
+            color: #000;
+            box-shadow: 0 0 25px rgba(56, 189, 248, 0.3);
+            transform: translateY(-1px);
+        }
 
-/* --- Features Section --- */
-.features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; padding: 0 10% 120px 10%; }
-.feature-card { padding: 35px; border-radius: var(--radius); border: 1px solid transparent; display: flex; flex-direction: column; gap: 15px; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-.feature-card:hover { transform: translateY(-12px); box-shadow: 0 20px 40px -15px rgba(0,0,0,0.6); }
-.feature-card h3 { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.3px; }
-.feature-card p { font-size: 0.95rem; color: #EAEAEA; line-height: 1.6; opacity: 0.9; }
-.feature-card b { color: #fff; font-weight: 700; }
+        @keyframes soft-pulse {
+            0% {
+                box-shadow: 0 0 5px rgba(56, 189, 248, 0.1);
+            }
 
-.card-1 { background: #0B132B; border-color: #1C2541; }
-.card-2 { background: #120A1F; border-color: #2D1E4F; }
-.card-3 { background: #0E1A1F; border-color: #1F3A40; }
-.card-4 { background: #0A0F1C; border-color: #202A44; }
-.card-5 { background: #130F1A; border-color: #3A2C4F; }
+            50% {
+                box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            }
 
-@media (max-width: 1024px) {
-    .hero-title { font-size: 42px; }
-    .section-header h2 { font-size: 2.5rem; }
-    nav { padding: 0 30px; }
-    .nav-center { display: none; } /* Focus on navigation on small screens */
-}
+            100% {
+                box-shadow: 0 0 5px rgba(56, 189, 248, 0.1);
+            }
+        }
+
+        /* --- Brand & Hero --- */
+        .brand-name {
+            font-size: 1.6rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            display: block;
+        }
+
+        .brand-tagline {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .hero {
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            padding: 0 10%;
+        }
+
+        .hero-title {
+            max-width: 800px;
+            font-size: 58px;
+            line-height: 1.1;
+            font-weight: 400;
+            letter-spacing: -2px;
+        }
+
+        .hero-title b {
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Section Heading --- */
+        .section-header {
+            text-align: center;
+            margin-top: -80px;
+            margin-bottom: 60px;
+            padding: 0 10%;
+        }
+
+        .section-header h2 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #ffffff 40%, #475569);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- Features Section --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            padding: 0 10% 120px 10%;
+        }
+
+        .feature-card {
+            padding: 35px;
+            border-radius: var(--radius);
+            border: 1px solid transparent;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        .feature-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: #EAEAEA;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .feature-card b {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .card-1 {
+            background: #0B132B;
+            border-color: #1C2541;
+        }
+
+        .card-2 {
+            background: #120A1F;
+            border-color: #2D1E4F;
+        }
+
+        .card-3 {
+            background: #0E1A1F;
+            border-color: #1F3A40;
+        }
+
+        .card-4 {
+            background: #0A0F1C;
+            border-color: #202A44;
+        }
+
+        .card-5 {
+            background: #130F1A;
+            border-color: #3A2C4F;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 42px;
+            }
+
+            .section-header h2 {
+                font-size: 2.5rem;
+            }
+
+            nav {
+                padding: 0 30px;
+            }
+
+            .nav-center {
+                display: none;
+            }
+
+            /* Focus on navigation on small screens */
+        }
     </style>
 </head>
+
 <body>
 
-<nav>
-    <div class="nav-left">
-        <a href="login.html" class="btn-nav btn-login">Login</a>
-        <a href="signup.html" class="btn-nav btn-signup">Sign up</a>
-    </div>
-    
-    <div class="nav-center">
-        <span class="brand-name">BookBack</span>
-        <span class="brand-tagline">Patients come back. Automatically.</span>
-    </div>
+    <nav>
+        <div class="nav-left">
+            <a href="login.html" class="btn-nav btn-login">Login</a>
+            <a href="signup.html" class="btn-nav btn-signup">Sign up</a>
+        </div>
 
-    <div class="nav-right">
-        <a href="dashboard.html" class="btn-nav btn-dashboard">Dashboard</a>
-    </div>
-</nav>
+        <div class="nav-center">
+            <span class="brand-name">BookBack</span>
+            <span class="brand-tagline">Patients come back. Automatically.</span>
+        </div>
 
-<main class="hero">
+        <div class="nav-right">
+            <a href="dashboard.html" class="btn-nav btn-dashboard">Dashboard</a>
+        </div>
+    </nav>
+
+    <main class="hero">
         <h1 class="hero-title">
             <b>Automated appointment reminders</b> and <b>self-booking</b> for clinics — without the chaos.
         </h1>
@@ -153,7 +299,8 @@ nav {
     <section class="features-grid">
         <div class="feature-card card-1">
             <h3>Never Miss an Appointment Again</h3>
-            <p>BookBack sends <b>automated reminders</b> before appointments so <b>no-shows drop</b> and clinics stop wasting time.</p>
+            <p>BookBack sends <b>automated reminders</b> before appointments so <b>no-shows drop</b> and clinics stop
+                wasting time.</p>
         </div>
 
         <div class="feature-card card-2">
@@ -178,4 +325,5 @@ nav {
     </section>
 
 </body>
+
 </html>

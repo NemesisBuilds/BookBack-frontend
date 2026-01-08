@@ -146,16 +146,7 @@
         const API_BASE_URL = "https://bookback-t83d.onrender.com";
         let loginButton = document.querySelector(".login-button");
 
-        document.addEventListener("DOMContentLoaded", async () => {
-            let response = await fetch(`${API_BASE_URL}/refresh`, {
-                method: "POST",
-                credentials: "include"
-            });
-            if (response.status === 200) {
-                window.location.href = "/dashboard.html";
-                return;
-            };
-        });
+
 
         loginButton.addEventListener("click", async () => {
             if (loginEmail.value === "" || loginPassword.value === "") {

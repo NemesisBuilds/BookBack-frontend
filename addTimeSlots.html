@@ -227,10 +227,31 @@
     color: var(--text-muted);
     font-size: 1.1rem;
 }
+        /* Loader */
+        #loader {
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(farthest-side, #38bdf8 94%, #0000) top/4px 4px no-repeat,
+                        conic-gradient(#0000 30%, #38bdf8);
+            -webkit-mask: radial-gradient(farthest-side, #0000 calc(100% - 4px), #000 0);
+            border-radius: 50%;
+            filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.6));
+            animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            position: fixed;
+            inset: 0;
+            margin: auto;
+            z-index: 9999;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
   </style>
 </head>
 
 <body>
+    <div id="loader"></div>
+
+  <div id="app" style="display:none;">
+
               <div class="heading-div">
        <p> BookBack </p>
        <p> Patients come back. Automatically.</p>
@@ -251,8 +272,10 @@ margin-bottom: 10px;">Time Slots</p>
 </div>
 
 <button class="log-btn">Save</button>
-
+</div>
 <script>
+const loader = document.getElementById("loader");
+const app = document.getElementById("app");
 
 const API_BASE_URL = "https://bookback-t83d.onrender.com";
 
@@ -262,7 +285,8 @@ let availability = [
 ];
 
 document.addEventListener("DOMContentLoaded", async () => {
-
+loader.style.display = "block";
+app.style.display = "none";
           let check = await fetch(`${API_BASE_URL}/refresh`,{
         method: "POST",
         credentials:"include"
@@ -305,6 +329,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (err) {
     console.error("Request error:", err);
   }
+
+  loader.style.display = "none";
+app.style.display = "block";
+
 });
 
 
@@ -450,8 +478,11 @@ document.querySelector(".log-btn").addEventListener("click", async () => {
     console.error("Save failed:", res.status);
     return;
   }
+  if(res.ok){
+    alert("Slots saved successfully !")
+  }
 
-  console.log("Slots saved");
+
 });
 </script>
 </body>

@@ -134,7 +134,7 @@
         <p> Patients come back. Automatically.</p>
     </div>
     <div class="signup-div">
-        <input type="text" placeholder="Email" class="signup-email-input">
+        <input type="email" placeholder="Email" class="signup-email-input">
         <input type="password" placeholder="Password" class="signup-password-input">
         <input type="text" placeholder="Clinic Name" class="signup-cn-input">
         <button class="signup-button">Sign Up</button>
@@ -164,7 +164,15 @@
             if (signupEmail.value === "" || signupClinicName.value === "" || signupPassword.value === "") {
                 alert("Please fill all the fileds first !");
                 return;
+            };
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(signupEmail.value)) {
+            alert("Enter a valid email address");
+            return;
             }
+
+            //Checking email existence + sending the verification email:-
+
             let userDetails = {
                 username: signupClinicName.value,
                 email: signupEmail.value,
@@ -179,8 +187,14 @@
             });
 
             if (response.ok) {
-                window.location.href = "/payment_page.html";
-            }
+                alert("If this email exists, you'll receive a verification link.");
+                return;
+            };
+
+            if (!response.ok){
+                alert("Please make sure that the entered email id exists !");
+                return;
+            };
 
             let data = await response.json();
 
